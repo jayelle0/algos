@@ -36,12 +36,45 @@ function same(arr1, arr2){
     }
 
     for(let key in frequencyCounter1){
+        // if key^2 does not match the key in the 2nd array; return false
         if(!(key ** 2 in frequencyCounter2)){
             return false
         }
+        // if value does not match in array1 and array2 ; return false 
         if(frequencyCounter2[key ** 2] !== frequencyCounter1[key]){
             return false
         }
     }
     return true
 }
+
+
+
+function validAnagram(first, second) {
+    if (first.length !== second.length) {
+      return false;
+    }
+  
+    const lookup = {};
+  
+    for (let i = 0; i < first.length; i++) {
+      let letter = first[i];
+      // if letter exists, increment, otherwise set to 1
+      lookup[letter] ? lookup[letter] += 1 : lookup[letter] = 1;
+    }
+    console.log(lookup)
+  
+    for (let i = 0; i < second.length; i++) {
+      let letter = second[i];
+      // can't find letter or letter is zero then it's not an anagram
+      if (!lookup[letter]) {
+        return false;
+      } else {
+        lookup[letter] -= 1;
+      }
+    }
+  
+    return true;
+  }
+  
+
